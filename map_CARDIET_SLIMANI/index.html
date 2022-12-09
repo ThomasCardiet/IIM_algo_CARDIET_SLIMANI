@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <!-- Nous chargeons les fichiers CDN de Leaflet. Le CSS AVANT le JS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="public/style.css" />
+    <title>Miam Map</title>
+  </head>
+  <body>
+    <div class="container">
+      <div id="rooms">
+        <h2>Selection de la Room:</h2>
+        <ul id="rooms__list"></ul>
+        <button id="rooms__add">Ajouter une Room</button>
+      </div>
+
+      <div id="login" class="login">
+        <div class="login__title">
+          <h2>Connexion</h2>
+        </div>
+        <form action="" id="loginform" class="login__form">
+          <label for="name">Nom</label>
+          <input type="text" id="name" />
+          <label for="login__restaurant">Choisis ton restaurant</label>
+          <select id="login__restaurant"></select>
+          <input id="login__coords" type="hidden" value="" />
+          <p id="login__position" onclick="toggleMapFullScreen(true)">
+            Changer sa localisation
+          </p>
+          <button type="submit">Connexion</button>
+        </form>
+      </div>
+
+      <div class="overlay"></div>
+
+      <div class="restaurants">
+        <div class="restaurants__title">
+          <h2>Restaurants</h2>
+        </div>
+        <ul class="restaurants__list"></ul>
+      </div>
+
+      <div id="map">
+        <div class="map__error"></div>
+        <p id="map__informations"></p>
+        <div id="map__legend">
+          <div>
+            <img src="img/red.png" alt="" />
+            <p>Point d'arrivée</p>
+          </div>
+          <div>
+            <img src="img/user.png" alt="" />
+            <p>Perso</p>
+          </div>
+          <div>
+            <img src="img/blue.png" alt="" />
+            <p>Restaurant</p>
+          </div>
+        </div>
+
+        <div class="map__user__infos"></div>
+      </div>
+
+      <div class="room">
+        <div class="room__title">
+          <h2 id="room__name"></h2>
+          <button id="room__change">Changer</button>
+        </div>
+
+        <div class="room__users__container">
+          <ul class="users__list"></ul>
+        </div>
+
+        <div class="room__chat__container">
+          <form id="form__message" action="">
+            <input id="chat__message" autocomplete="off" />
+            <button type="submit" id="chat__submit">Envoyer</button>
+          </form>
+          <ul id="messages__box"></ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fichiers Javascript -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.1.min.js"
+      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
+      crossorigin=""
+    ></script>
+    <script src="js/index.js"></script>
+    <script src="js/prints.js"></script>
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script src="socket/client.js"></script>
+  </body>
+</html>

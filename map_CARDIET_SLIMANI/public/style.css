@@ -1,0 +1,430 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #f2f2f2;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  margin: auto;
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+}
+
+#rooms {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  z-index: 999999;
+}
+
+#rooms__list {
+  list-style: none;
+  width: 30%;
+}
+
+#rooms__list li {
+  background-color: black;
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px;
+  color: white;
+}
+
+#rooms__list li:hover {
+  cursor: pointer;
+  background-color: rgb(35, 35, 35);
+}
+
+.login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: fit-content;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  box-sizing: border-box;
+
+  z-index: 9999;
+}
+
+.login__title {
+  font-size: 1em;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login__form label {
+  margin-bottom: 10px;
+}
+
+.login__form input,
+.login__form select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.login__form button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+}
+
+.login__form button:hover {
+  background-color: #555;
+}
+
+.login__form button:active {
+  background-color: #777;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+}
+
+.restaurants,
+.room {
+  width: 30%;
+  background-color: #fff;
+  padding: 12px 6px;
+  box-sizing: border-box;
+}
+
+.restaurants {
+  height: 100vh;
+  border-right: 1px solid #ccc;
+}
+
+.restaurants__title,
+.room__title {
+  font-size: 1.1em;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.restaurants__list {
+  height: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  user-select: none;
+}
+
+.restaurants__list li {
+  display: flex;
+  padding: 12px 6px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+
+  align-items: center;
+}
+
+.restaurants__list li:last-child {
+  border-bottom: none;
+}
+
+.restaurants__list li:hover {
+  background-color: #f2f2f2;
+}
+
+.restaurants__list li:active {
+  background-color: #e6e6e6;
+}
+
+.restaurants__list li .restaurants__list__item__image {
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
+}
+
+.restaurants__list li img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.restaurants__list li .restaurants__list__item__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.restaurants__list li .restaurants__list__item__content h3 {
+  margin-bottom: 5px;
+
+  font-size: 1em;
+}
+
+.room {
+  position: relative;
+  border-left: 1px solid #ccc;
+
+  max-height: 100vh;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+
+  user-select: none;
+}
+
+.room__title {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.room__title button:hover {
+  cursor: pointer;
+}
+
+.room__chat__container {
+  position: absolute;
+
+  bottom: 0;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 40%;
+
+  border-radius: 5px;
+  z-index: 9997;
+}
+
+#form__message {
+  background: rgba(0, 0, 0, 0.15);
+  padding: 0.25rem;
+  width: 100%;
+
+  bottom: 0;
+  right: 0;
+  display: flex;
+  height: 3rem;
+  position: absolute;
+  box-sizing: border-box;
+  z-index: 10;
+}
+#chat__message {
+  border: none;
+  padding: 0 1rem;
+  border-radius: 10px;
+  margin: 0.25rem;
+}
+#chat__message:focus {
+  outline: none;
+}
+
+#form__message > button {
+  background: #333;
+  border: none;
+  padding: 0 1rem;
+  margin: 0.25rem;
+  border-radius: 3px;
+  outline: none;
+  color: #fff;
+}
+
+#messages__box {
+  border-top: 1px solid #ccc;
+  list-style-type: none;
+  margin: 0;
+  padding-bottom: 50px;
+
+  max-height: 100%;
+
+  height: 100%;
+
+  overflow: auto;
+
+  background-color: #f2f2f2;
+}
+
+#form__message #chat__message:focus + #messages__box {
+  display: flex;
+}
+
+#messages__box > li {
+  padding: 0.5rem 1rem;
+}
+#messages__box > li:nth-child(odd) {
+  background: #efefef;
+}
+
+#map {
+  /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
+  width: 100%;
+  height: 100vh;
+  margin: auto;
+  position: relative;
+}
+
+#map.fullscreen {
+  position: absolute;
+  z-index: 9999;
+}
+
+#map__informations {
+  position: absolute;
+  z-index: 9997;
+  text-align: center;
+  width: 100%;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+#map__legend {
+  position: absolute;
+  z-index: 9997;
+  bottom: 0;
+  left: 0;
+  width: 30%;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 10px;
+}
+
+#map__legend > div {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  margin-top: 10px;
+}
+
+#map__legend p {
+  margin: 5px 0 0 5px;
+}
+
+#map__legend img {
+  width: 100%;
+}
+
+#login__position {
+  background-color: rgb(160, 30, 30);
+  color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+#login__position:hover {
+  background-color: rgb(196, 22, 22);
+  cursor: pointer;
+  text-align: center;
+}
+
+.room__users__container {
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.users__list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 100%;
+
+  overflow-y: auto;
+  user-select: none;
+}
+.users__list__item {
+  position: relative;
+  color: white;
+  background-color: black;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.users__list__item:not(.selected) svg {
+  display: none;
+}
+
+.users__list__item.selected svg {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(-50%, -50%);
+}
+
+.users__list__item.selected svg * {
+  fill: rgb(217, 217, 43);
+}
+
+.users__list__item.owner {
+  color: rgb(217, 217, 43);
+}
+
+.users__list__item:hover {
+  cursor: pointer;
+  background-color: rgb(84, 84, 84);
+}
+
+.map__error {
+  opacity: 0;
+  position: absolute;
+  z-index: 9999;
+
+  width: 100%;
+  padding: 6px;
+  top: 0;
+  left: 0;
+
+  color: white;
+  background-color: red;
+  text-transform: uppercase;
+
+  text-align: center;
+
+  transition: all 0.5s ease;
+}
+
+.map__user__infos {
+  position: absolute;
+  z-index: 9997;
+  bottom: 0;
+  right: 0;
+  width: 26%;
+
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+}
